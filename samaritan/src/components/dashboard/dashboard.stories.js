@@ -3,4 +3,4 @@ import Dashboard from "./dashboard";
 
 export default { title: "Dashboard" };
 
-export const withText = () => <Dashboard />;
+export const dashboard = () => <Dashboard />;
