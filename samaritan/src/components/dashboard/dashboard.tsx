@@ -1,7 +1,8 @@
 import React from "react";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Avatar, Typography } from "antd";
 
-const { Content, Sider } = Layout;
+const { Content, Sider, Header } = Layout;
+const { Title } = Typography;
 
 class Dashboard extends React.Component {
   state = {
@@ -39,6 +40,11 @@ class Dashboard extends React.Component {
             </Menu>
           </Sider>
           <Layout>
+            <Header style={{ background: "#fff", padding: 0 }}>
+              <div style={{ float: "right", marginRight: 20 }}>
+                <Avatar icon="user" />
+              </div>
+            </Header>
             <Content style={{ margin: "0 16px" }}>Content</Content>
           </Layout>
         </Layout>
