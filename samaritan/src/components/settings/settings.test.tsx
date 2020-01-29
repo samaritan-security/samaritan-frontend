@@ -1,10 +1,10 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
-import Login from "./login";
+import Settings from "./settings";
 
 afterEach(cleanup);
 
 it("renders without crashing", () => {
-  const { container } = render(<Login />);
+  const { container } = render(<Settings />);
   expect(container.firstChild).not.toBe(null);
 });
