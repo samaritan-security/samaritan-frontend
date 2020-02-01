@@ -12,3 +12,11 @@
     left: 40%;
     top: 10%;
   }
+
+  .login-form {
+    max-width: 300px;
+  }
+
+  .login-form-forgot {
+    float: right;
+  }
