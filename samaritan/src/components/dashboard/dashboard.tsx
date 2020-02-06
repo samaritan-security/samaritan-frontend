@@ -2,7 +2,6 @@ import React from "react";
 import { Layout, Menu, Icon, Avatar, Typography } from "antd";
 
 const { Content, Sider, Header } = Layout;
-const { Title } = Typography;
 
 class Dashboard extends React.Component {
   state = {
