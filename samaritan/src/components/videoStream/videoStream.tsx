@@ -1,11 +1,10 @@
 import React from "react";
-import { Player } from "video-react";
 
 class VideoStream extends React.Component {
   render() {
     return (
       <>
-        <p>Settings</p>
+        <img src="http://192.168.1.110/video.mjpg" />
       </>
     );
   }
