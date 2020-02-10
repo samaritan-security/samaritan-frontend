@@ -4,4 +4,4 @@ import "antd/dist/antd.css";
 
 export default { title: "IdentificationList" };
 
-export const login = () => <IdentificationList />;
+export const identificationList = () => <IdentificationList />;
