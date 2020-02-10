@@ -1,7 +1,11 @@
 import React from "react";
-import { Avatar } from "antd";
+import { Avatar, Typography } from "antd";
 
-interface IIdentificationListProps {}
+const { Title } = Typography;
+
+interface IIdentificationListProps {
+  title?: string;
+}
 
 interface IIdentificationListState {
   names: string[];
@@ -32,7 +36,15 @@ class IdentificationList extends React.Component<
 
   render() {
     const { names } = this.state;
-    return <>{names.map(name => this.getRow(name))}</>;
+    const { title } = this.props;
+    return (
+      <>
+        <Title level={4} style={{ margin: 20 }}>
+          {title}
+        </Title>
+        {names.map(name => this.getRow(name))}
+      </>
+    );
   }
 }
 

@@ -4,4 +4,6 @@ import "antd/dist/antd.css";
 
 export default { title: "IdentificationList" };
 
-export const identificationList = () => <IdentificationList />;
+export const identificationList = () => (
+  <IdentificationList title="Recognized" />
+);
