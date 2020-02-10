@@ -11,6 +11,7 @@ export class KnownHandler {
     if (!!data) {
       let dataArray = JSON.parse(JSON.stringify(data));
       for (let i = 0; i < dataArray.length; i++) {
+        console.log(dataArray[i]);
         known.push(new Known(dataArray[i]));
       }
     }

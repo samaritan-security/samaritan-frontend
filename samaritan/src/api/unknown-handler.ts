@@ -5,7 +5,7 @@ export class UnknownHandler {
   /**
    * returns a list of all known
    */
-  async getAllKnown(): Promise<Unknown[]> {
+  async getAllUnknown(): Promise<Unknown[]> {
     let unknown: Unknown[] = [];
     let data = await APIHandler(`known`, "GET");
     if (!!data) {

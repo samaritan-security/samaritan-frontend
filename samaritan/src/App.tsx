@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "antd/dist/antd.css";
+import IdentificationList from "./components/identificationList/identificationList";
 
 const App: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-    </div>
+    </div
   );
 };
 
