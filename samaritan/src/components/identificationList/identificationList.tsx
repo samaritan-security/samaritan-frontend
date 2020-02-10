@@ -38,7 +38,6 @@ class IdentificationList extends React.Component<
       });
     }
     //otherwise, this list displays unknown faces, get those pictures.
-    //for now just hardcoded bc don't have endpoint set up
     else {
       new UnknownHandler().getAllUnknown().then(data => {
         this.setState({
@@ -48,40 +47,43 @@ class IdentificationList extends React.Component<
     }
   };
 
-  getKnownRow = (name: string) => {
+  getKnownRow = (known: Known) => {
+    let img = "data:image/png;base64," + known.img;
+
     return (
       <div style={{ display: "block" }}>
-        <Avatar icon="user" style={{ display: "inline-block", margin: 10 }} />
-        <p style={{ display: "inline-block" }}>{name}</p>
+        <Avatar
+          icon="user"
+          style={{ display: "inline-block", margin: 10 }}
+          src={img}
+        />
+        <p style={{ display: "inline-block" }}>{known.name}</p>
       </div>
     );
   };
 
-  getUnknownRow = () => {
+  getUnknownRow = (unknown: Unknown) => {
+    let img = "data:image/png;base64," + unknown.img;
+
     return (
       <div style={{ display: "block" }}>
         <Avatar
           icon="user"
           size={64}
           style={{ display: "inline-block", marginTop: 10, marginLeft: 30 }}
+          src={img}
         />
       </div>
     );
   };
 
   getKnownList = (data: Known[]) => {
-    return <>{data.map(known => this.getKnownRow(known.name))}</>;
+    return <>{data.map(known => this.getKnownRow(known))}</>;
   };
 
   getUnknownList = (data: Unknown[]) => {
     //hardcoded rn, need to map eventually
-    return (
-      <>
-        {this.getUnknownRow()}
-        {this.getUnknownRow()}
-        {this.getUnknownRow()}
-      </>
-    );
+    return <>{data.map(unknown => this.getUnknownRow(unknown))}</>;
   };
   render() {
     const { known, unknown } = this.state;
