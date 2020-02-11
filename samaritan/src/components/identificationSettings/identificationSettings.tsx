@@ -2,14 +2,12 @@ import React from "react";
 import { Input } from "antd";
 import { Typography } from "antd";
 import { Upload, message, Button, Icon } from "antd";
-import { Row, Col } from "antd";
-import { Form } from "antd";
 import "./identificationSettings.css";
 
 const { Title } = Typography;
 const { Dragger } = Upload;
 
-const props = {
+const fileUploadProps = {
   name: "file",
   multiple: true,
   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -32,7 +30,7 @@ class IdentificationSettings extends React.Component {
       <>
         <Title className="title"> Identification Settings </Title>
 
-        <Dragger {...props}>
+        <Dragger {...fileUploadProps}>
           <p className="ant-upload-drag-icon">
             <Icon type="inbox" />
           </p>
