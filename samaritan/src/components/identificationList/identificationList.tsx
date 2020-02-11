@@ -82,7 +82,6 @@ class IdentificationList extends React.Component<
   };
 
   getUnknownList = (data: Unknown[]) => {
-    //hardcoded rn, need to map eventually
     return <>{data.map(unknown => this.getUnknownRow(unknown))}</>;
   };
   render() {
