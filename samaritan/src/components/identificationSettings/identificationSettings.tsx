@@ -11,7 +11,7 @@ const fileUploadProps = {
   name: "file",
   multiple: true,
   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  onChange(info) {
+  onChange(info: any) {
     const { status } = info.file;
     if (status !== "uploading") {
       console.log(info.file, info.fileList);
@@ -42,7 +42,7 @@ class IdentificationSettings extends React.Component {
             uploading company data or other band files
           </p>
         </Dragger>
-        
+
         <div className="submit">
           <Input placeholder="Name" style={{ marginBottom: 10 }} />
           <Input placeholder="ID" style={{ marginBottom: 10 }} />
