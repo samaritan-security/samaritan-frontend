@@ -26,25 +26,28 @@ class IdentificationList extends React.Component<
   };
 
   componentDidMount = () => {
-    const { type } = this.props;
+    setInterval(() => {
+      const { type } = this.props;
 
-    //if this list displays known people, make request to fetch
-    //names/pics here.
-    if (type == "known") {
-      new KnownHandler().getAllKnown().then(data => {
-        this.setState({
-          known: data
+      //if this list displays known people, make request to fetch
+      //names/pics here.
+      if (type == "known") {
+        new KnownHandler().getAllKnown().then(data => {
+          this.setState({
+            known: data
+          });
         });
-      });
-    }
-    //otherwise, this list displays unknown faces, get those pictures.
-    else {
-      new UnknownHandler().getAllUnknown().then(data => {
-        this.setState({
-          unknown: data
+      }
+      //otherwise, this list displays unknown faces, get those pictures.
+      else {
+        new UnknownHandler().getAllUnknown().then(data => {
+          this.setState({
+            unknown: data
+          });
         });
-      });
-    }
+      }
+    }, 1000);
+    return () => clearInterval();
   };
 
   getKnownRow = (known: Known) => {
