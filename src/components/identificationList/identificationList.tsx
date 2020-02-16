@@ -51,7 +51,8 @@ class IdentificationList extends React.Component<
   };
 
   getKnownRow = (known: Known) => {
-    let img = "data:image/png;base64," + known.img;
+    let img = "data:image/jpeg;charset=utf-8;base64, " + known.img;
+    console.log(img);
 
     return (
       <div style={{ display: "block" }}>
@@ -66,7 +67,7 @@ class IdentificationList extends React.Component<
   };
 
   getUnknownRow = (unknown: Unknown) => {
-    let img = "data:image/png;base64," + unknown.img;
+    let img = "data:image/jpeg;charset=utf-8;base64, " + unknown.img;
 
     return (
       <div style={{ display: "block" }}>
