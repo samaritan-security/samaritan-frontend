@@ -1,0 +1,13 @@
+.submit {
+    width: 25%;
+    border-radius: 15px;
+    height: 15px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+  }
+
+  .upload {
+    width: 1px;
+    height: 128px;
+  }
