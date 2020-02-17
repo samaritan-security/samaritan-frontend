@@ -1,5 +1,7 @@
 import React from "react";
 import { Layout, Menu, Icon, Avatar, Typography } from "antd";
+import IdentificationList from "../identificationList/identificationList";
+import VideoStream from "../videoStream/videoStream";
 
 const { Content, Sider, Header } = Layout;
 
@@ -44,7 +46,17 @@ class Dashboard extends React.Component {
                 <Avatar icon="user" />
               </div>
             </Header>
-            <Content style={{ margin: "0 16px" }}>Content</Content>
+            <Content style={{ margin: "0 16px", display: "" }}>
+              <div style={{ float: "left", display: "inline" }}>
+                <VideoStream ip="192.168.1.122" />
+              </div>
+              <div style={{ float: "left", display: "inline" }}>
+                <IdentificationList type="known" title="Recognized" />
+              </div>
+              <div style={{ float: "left", display: "inline" }}>
+                <IdentificationList type="unknown" title="Unknown" />
+              </div>
+            </Content>
           </Layout>
         </Layout>
       </>
