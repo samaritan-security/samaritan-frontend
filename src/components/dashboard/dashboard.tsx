@@ -29,6 +29,10 @@ class Dashboard extends React.Component {
                 <Icon type="appstore" />
                 <span>Dashboard</span>
               </Menu.Item>
+              <Menu.Item>
+                <Icon type="bell"/>
+                <span>Alerts</span>
+              </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="search" />
                 <span>Search</span>
