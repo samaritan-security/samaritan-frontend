@@ -30,3 +30,25 @@ export class Unknown {
     this.img = data.img;
   }
 }
+
+export class Alert {
+  _id: string;
+  time: string;
+  constructor(data : any){
+    this._id = data._id;
+    this.time = data.time;
+  }
+}
+
+export class Person {
+  _id : string;
+  name? : string;
+  img : string;
+  known : boolean;
+  constructor(data : any){
+    this._id = data._id;
+    this.name = data.name;
+    this.img = data.img;
+    this.known = data.known;
+  }
+}

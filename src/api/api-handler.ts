@@ -11,7 +11,7 @@ export async function APIHandler(
   if (!!body) {
     data = JSON.stringify(body);
   }
-  if (method === "POST") {
+  if (method === "POST" || method === "PUT") {
     await fetch(`${local_url}/${extension}`, {
       method: method,
       body: data,
