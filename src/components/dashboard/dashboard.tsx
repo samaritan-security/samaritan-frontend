@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Icon, Avatar, Typography } from "antd";
+import { Layout, Menu, Icon, Avatar, Alert } from "antd";
 import IdentificationList from "../identificationList/identificationList";
 import VideoStream from "../videoStream/videoStream";
 
@@ -21,8 +21,7 @@ class Dashboard extends React.Component {
           <Sider
             collapsible
             collapsed={this.state.collapsed}
-            onCollapse={this.onCollapse}
-          >
+            onCollapse={this.onCollapse}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <Menu.Item key="1">
@@ -30,7 +29,7 @@ class Dashboard extends React.Component {
                 <span>Dashboard</span>
               </Menu.Item>
               <Menu.Item>
-                <Icon type="bell"/>
+                <Icon type="bell" />
                 <span>Alerts</span>
               </Menu.Item>
               <Menu.Item key="2">
@@ -53,6 +52,17 @@ class Dashboard extends React.Component {
             <Content style={{ margin: "0 16px", display: "" }}>
               <div style={{ float: "left", display: "inline" }}>
                 <VideoStream ip="192.168.1.122" />
+              </div>
+              <div className="alertPopup">
+                <div>
+                  <Alert message="Warning" type="error" showIcon />
+                  <Alert
+                    message="Warning"
+                    description="This is an alert for Samaritan Security."
+                    type="error"
+                    showIcon
+                  />
+                </div>
               </div>
               <div style={{ float: "left", display: "inline" }}>
                 <IdentificationList type="known" title="Recognized" />
