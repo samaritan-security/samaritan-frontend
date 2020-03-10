@@ -2,7 +2,8 @@ import React from "react";
 import { Avatar, Typography } from "antd";
 import { KnownHandler } from "../../api/known-handler";
 import { UnknownHandler } from "../../api/unknown-handler";
-import { Known, Unknown } from "../../api/api-types";
+import { Known, Unknown, Person } from "../../api/api-types";
+import { SeenHandler } from "../../api/seen-handler";
 
 const { Title } = Typography;
 
@@ -12,8 +13,8 @@ interface IIdentificationListProps {
 }
 
 interface IIdentificationListState {
-  known: Known[];
-  unknown: Unknown[];
+  people: Person[];
+  startTime: string;
 }
 
 class IdentificationList extends React.Component<
@@ -21,36 +22,29 @@ class IdentificationList extends React.Component<
   IIdentificationListState
 > {
   state = {
-    known: [],
-    unknown: []
+    people: [],
+    startTime: new Date().toUTCString()
   };
 
   componentDidMount = () => {
+    this.setState({
+      startTime: new Date().toUTCString()
+    });
     setInterval(() => {
       const { type } = this.props;
+      const { startTime } = this.state;
+      let endTime = new Date().toUTCString();
 
       //if this list displays known people, make request to fetch
       //names/pics here.
-      if (type == "known") {
-        new KnownHandler().getAllKnown().then(data => {
-          this.setState({
-            known: data
-          });
-        });
-      }
-      //otherwise, this list displays unknown faces, get those pictures.
-      else {
-        new UnknownHandler().getAllUnknown().then(data => {
-          this.setState({
-            unknown: data
-          });
-        });
-      }
-    }, 1000);
+      new SeenHandler().getAllPeople(startTime, endTime).then(data => {
+        this.setState({});
+      });
+    }, 3000);
     return () => clearInterval();
   };
 
-  getKnownRow = (known: Known) => {
+  getKnownRow = (known: Person) => {
     let img = "data:image/jpeg;charset=utf-8;base64, " + known.img;
     console.log(img);
 
@@ -66,7 +60,7 @@ class IdentificationList extends React.Component<
     );
   };
 
-  getUnknownRow = (unknown: Unknown) => {
+  getUnknownRow = (unknown: Person) => {
     let img = "data:image/jpeg;charset=utf-8;base64, " + unknown.img;
 
     return (
@@ -81,15 +75,31 @@ class IdentificationList extends React.Component<
     );
   };
 
-  getKnownList = (data: Known[]) => {
-    return <>{data.map(known => this.getKnownRow(known))}</>;
+  getKnownList = (data: Person[]) => {
+    return (
+      <>
+        {data.map(known => {
+          if (known.known) {
+            return this.getKnownRow(known);
+          }
+        })}
+      </>
+    );
   };
 
-  getUnknownList = (data: Unknown[]) => {
-    return <>{data.map(unknown => this.getUnknownRow(unknown))}</>;
+  getUnknownList = (data: Person[]) => {
+    return (
+      <>
+        {data.map(unknown => {
+          if (!unknown.known) {
+            return this.getUnknownRow(unknown);
+          }
+        })}
+      </>
+    );
   };
   render() {
-    const { known, unknown } = this.state;
+    const { people } = this.state;
     const { title, type } = this.props;
     return (
       <>
@@ -97,8 +107,8 @@ class IdentificationList extends React.Component<
           {title}
         </Title>
         {type == "known"
-          ? this.getKnownList(known)
-          : this.getUnknownList(unknown)}
+          ? this.getKnownList(people)
+          : this.getUnknownList(people)}
       </>
     );
   }
