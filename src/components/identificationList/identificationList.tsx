@@ -38,7 +38,9 @@ class IdentificationList extends React.Component<
       //if this list displays known people, make request to fetch
       //names/pics here.
       new SeenHandler().getAllPeople(startTime, endTime).then(data => {
-        this.setState({});
+        this.setState({
+          people: data
+        });
       });
     }, 3000);
     return () => clearInterval();
