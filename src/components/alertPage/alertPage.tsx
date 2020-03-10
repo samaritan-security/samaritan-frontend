@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Table, Modal, Avatar } from "antd";
+import { Typography, Table, Modal, Avatar, Spin } from "antd";
 import { Alert, Person } from "../../api/api-types";
 import { AlertHandler, MockAlertHandler } from "../../api/alert-handler";
 import ActionRequest from "../../custom-components/actionRequest/actionRequest";
@@ -7,54 +7,44 @@ import { PersonHandler, MockPersonHandler } from "../../api/person-handler";
 
 const { Title } = Typography;
 
-interface IAlertPageProps {}
+interface IAlertPageProps {
+  startTime: string;
+}
 interface IAlertPageState {
   alerts: Alert[];
-  startTime: string;
   visible: boolean;
-  person: Person;
+  person: Person | undefined;
 }
 
 class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
   state = {
     alerts: [],
-    startTime: "",
     visible: false,
-    person: new Person({})
+    person: undefined,
+    loading: true
   };
 
   componentDidMount = () => {
-    this.setState({
-      startTime: new Date().toUTCString()
-    });
     setInterval(() => {
-      const { startTime } = this.state;
+      const { startTime } = this.props;
       let endTime = new Date().toUTCString();
-      // new AlertHandler().getAlerts(startTime, endTime).then(data => {
-      //   this.setState({
-      //     alerts : data
-      //   })
-      // })
-      let response = new MockAlertHandler().getAlerts(startTime, endTime);
-      this.setState({
-        alerts: response
+      new AlertHandler().getAlerts(startTime, endTime).then(data => {
+        this.setState({
+          alerts: data
+        });
       });
     }, 3000);
     return () => clearInterval();
   };
 
   openDetailsModal = (record: any) => {
-    // new PersonHandler().getById(record._id).then(person => {
-    //   this.setState({
-    //     visible: true,
-    //     person: person
-    //   });
-    // });
-
-    let person = new MockPersonHandler().getById(record._id);
+    new PersonHandler().getById(record.ref_id).then((person: Person) => {
+      this.setState({
+        person: person
+      });
+    });
     this.setState({
-      visible: true,
-      person: person
+      visible: true
     });
   };
 
@@ -66,14 +56,22 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
 
   render() {
     const { alerts } = this.state;
-    let img = "data:image/jpeg;charset=utf-8;base64, " + this.state.person.img;
-    let dataSource = alerts;
+    let img = "";
+    if (this.state.person === undefined) {
+      img = "";
+    } else {
+      img =
+        "data:image/jpeg;charset=utf-8;base64, " + this.state.person!["img"];
+    }
+    let dataSource = alerts.map((element: Alert) => {
+      return { key: element._id, ref_id: element.ref_id, time: element.time };
+    });
 
     const columns = [
       {
         title: "Alert",
-        dataIndex: "_id",
-        key: "_id"
+        dataIndex: "ref_id",
+        key: "ref_id"
       },
       {
         title: "Time",
@@ -102,20 +100,26 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
           onOk={this.closeDetailsModal}
           onCancel={this.closeDetailsModal}
         >
-          <div style={{ display: "block" }}>
-            <Avatar
-              icon="user"
-              style={{ display: "inline-block", margin: 10 }}
-              src={img}
-              size={64}
-            />
-            <p style={{ display: "inline-block" }}>{this.state.person.name}</p>
-            <div
-              style={{ display: "inline-block", float: "right", margin: 10 }}
-            >
-              <ActionRequest id={this.state.person._id} />
+          {this.state.person !== undefined ? (
+            <div style={{ display: "block" }}>
+              <Avatar
+                icon="user"
+                style={{ display: "inline-block", margin: 10 }}
+                src={img}
+                size={64}
+              />
+              <p style={{ display: "inline-block" }}>
+                {this.state.person!["name"]}
+              </p>
+              <div
+                style={{ display: "inline-block", float: "right", margin: 10 }}
+              >
+                <ActionRequest id={this.state.person!["_id"]} />
+              </div>
             </div>
-          </div>
+          ) : (
+            <Spin />
+          )}
         </Modal>
       </>
     );

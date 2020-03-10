@@ -33,22 +33,33 @@ export class Unknown {
 
 export class Alert {
   _id: string;
+  ref_id: string;
   time: string;
-  constructor(data : any){
+  constructor(data: any) {
     this._id = data._id;
+    this.ref_id = data.ref_id;
     this.time = data.created_at;
   }
 }
 
 export class Person {
-  _id : string;
-  name? : string;
-  img : string;
-  known : boolean;
-  constructor(data : any){
+  _id: string;
+  name?: string;
+  img: string;
+  known: boolean;
+  constructor(data: any) {
     this._id = data._id;
     this.name = data.name;
     this.img = data.img;
     this.known = data.known;
+  }
+}
+
+export class Seen {
+  _id: string;
+  time: string;
+  constructor(data: any) {
+    this._id = data.ref_id;
+    this.time = data.created_at;
   }
 }

@@ -33,9 +33,15 @@ export class PersonHandler {
   }
 
   async getById(id: string): Promise<Person> {
+    let people: Person[] = [];
     let data = await APIHandler(`people/${id}`, "GET");
-    let person: Person = new Person(data);
-    return person;
+    if (!!data) {
+      let dataArray = JSON.parse(JSON.stringify(data));
+      for (let i = 0; i < dataArray.length; i++) {
+        people.push(new Person(dataArray[i]));
+      }
+    }
+    return people[0];
   }
 }
 
