@@ -3,4 +3,6 @@ import AlertPage from "./alertPage";
 
 export default { title: "AlertPage" };
 
-export const alertPage = () => <AlertPage />;
+export const alertPage = () => (
+  <AlertPage startTime={new Date().toUTCString()} />
+);

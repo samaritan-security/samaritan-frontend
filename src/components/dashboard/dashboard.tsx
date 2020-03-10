@@ -60,7 +60,16 @@ class Dashboard extends React.Component {
                 </div>
               </Header>
               <Content style={{ margin: "0 16px", display: "" }}>
-                <Route exact path="/alerts" component={AlertPage} />
+                <Route
+                  exact
+                  path="/alerts"
+                  render={props => (
+                    <AlertPage
+                      {...props}
+                      startTime={"Wed, 26 Feb 2020 18:23:27 GMT"}
+                    />
+                  )}
+                />
                 <Route exact path="/" component={HomePage} />
               </Content>
             </Layout>

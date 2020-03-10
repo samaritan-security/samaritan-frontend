@@ -33,9 +33,11 @@ export class Unknown {
 
 export class Alert {
   _id: string;
+  ref_id: string;
   time: string;
   constructor(data: any) {
     this._id = data._id;
+    this.ref_id = data.ref_id;
     this.time = data.created_at;
   }
 }

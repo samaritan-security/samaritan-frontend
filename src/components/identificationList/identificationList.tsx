@@ -31,12 +31,8 @@ class IdentificationList extends React.Component<
       startTime: new Date().toUTCString()
     });
     setInterval(() => {
-      const { type } = this.props;
       const { startTime } = this.state;
       let endTime = new Date().toUTCString();
-
-      //if this list displays known people, make request to fetch
-      //names/pics here.
       new SeenHandler().getAllPeople(startTime, endTime).then(data => {
         this.setState({
           people: data
@@ -48,7 +44,6 @@ class IdentificationList extends React.Component<
 
   getKnownRow = (known: Person) => {
     let img = "data:image/jpeg;charset=utf-8;base64, " + known.img;
-    console.log(img);
 
     return (
       <div style={{ display: "block" }}>
@@ -100,6 +95,7 @@ class IdentificationList extends React.Component<
       </>
     );
   };
+
   render() {
     const { people } = this.state;
     const { title, type } = this.props;

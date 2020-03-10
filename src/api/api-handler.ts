@@ -27,7 +27,6 @@ export async function APIHandler(
       })
       .catch(console.log);
 
-    console.log(response);
     return response;
   } else {
     await fetch(`${local_url}/${extension}`, {
@@ -41,7 +40,6 @@ export async function APIHandler(
       })
       .catch(console.log);
 
-    console.log(response);
     return response;
   }
 }
