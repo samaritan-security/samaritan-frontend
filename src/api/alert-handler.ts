@@ -20,3 +20,19 @@ export class AlertHandler{
         return alerts;
     }
 }
+
+/**
+ * Mocks functionality of AlertHandler 
+ * returns hardcoded array of alerts
+ */
+export class MockAlertHandler{
+    getAlerts(startDate: string, endDate: string) : Alert[]{
+        let alerts : Alert[] = [];
+
+        alerts.push(new Alert({_id : 0, created_at : new Date().toUTCString()}))
+        alerts.push(new Alert({_id : 1, created_at : new Date().toUTCString()}))
+        alerts.push(new Alert({_id : 2, created_at : new Date().toUTCString()}))
+
+        return alerts;
+    }
+}

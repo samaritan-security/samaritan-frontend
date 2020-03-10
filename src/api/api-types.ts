@@ -36,7 +36,7 @@ export class Alert {
   time: string;
   constructor(data : any){
     this._id = data._id;
-    this.time = data.time;
+    this.time = data.created_at;
   }
 }
 
