@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Table, Modal, Avatar } from "antd";
 import { Alert, Person } from "../../api/api-types";
 import { AlertHandler, MockAlertHandler } from "../../api/alert-handler";
-import { AlertState } from "antd/lib/alert";
 import ActionRequest from "../../custom-components/actionRequest/actionRequest";
 import { PersonHandler, MockPersonHandler } from "../../api/person-handler";
 
@@ -69,18 +68,6 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
     const { alerts } = this.state;
     let img = "data:image/jpeg;charset=utf-8;base64, " + this.state.person.img;
     let dataSource = alerts;
-    // const dataSource = [
-    //     {
-    //       key: '1',
-    //       alert: 'asdfasdf',
-    //       time: 'March 09 2020',
-    //     },
-    //     {
-    //         key: '2',
-    //         alert: 'slksls',
-    //         time: 'March 09 2020',
-    //       },
-    //   ];
 
     const columns = [
       {
@@ -105,7 +92,7 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
             return {
               onClick: event => {
                 this.openDetailsModal(record);
-              } //click row, open alert details window
+              }
             };
           }}
         />
