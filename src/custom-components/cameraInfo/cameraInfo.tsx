@@ -18,7 +18,7 @@ class CameraInfo extends React.Component<ICameraInfoProps, ICameraInfoState> {
           style={{ width: 500 }}
         >
           <div style={{ float: "left", display: "inline" }}>
-            <VideoStream ip="0.0.0.0:5000" />
+            <VideoStream ip={this.props.camera.ip} />
           </div>
           <div style={{ float: "left", display: "inline" }}>
             <IdentificationList type="known" title="Recognized" />

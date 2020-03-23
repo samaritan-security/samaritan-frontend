@@ -6,6 +6,6 @@ export default { title: "CameraInfo", module };
 
 export const cameraInfo = () => (
   <CameraInfo
-    camera={new Camera({ _id: "0", nickname: "home", ip: "localhost" })}
+    camera={new Camera({ _id: "0", nickname: "home", ip: "192.168.1.107" })}
   />
 );

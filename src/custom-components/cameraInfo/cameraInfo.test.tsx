@@ -8,7 +8,7 @@ afterEach(cleanup);
 it("renders without crashing", () => {
   const { container } = render(
     <CameraInfo
-      camera={new Camera({ _id: "0", nickname: "home", ip: "localhost" })}
+      camera={new Camera({ _id: "0", nickname: "home", ip: "192.168.1.107" })}
     />
   );
   expect(container.firstChild).not.toBe(null);
