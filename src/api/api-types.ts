@@ -63,3 +63,14 @@ export class Seen {
     this.time = data.created_at;
   }
 }
+
+export class Camera {
+  _id: string;
+  ip: string;
+  nickname: string;
+  constructor(data: any) {
+    this._id = data._id;
+    this.ip = data.ip;
+    this.nickname = data.nickname;
+  }
+}
