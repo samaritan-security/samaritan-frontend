@@ -2,7 +2,6 @@ import React from "react";
 import VideoStream from "../../components/videoStream/videoStream";
 import IdentificationList from "../../components/identificationList/identificationList";
 import { Camera } from "../../api/api-types";
-import { Card } from "antd";
 
 interface ICameraInfoProps {
   camera: Camera; //id, ip, nickname
@@ -10,23 +9,28 @@ interface ICameraInfoProps {
 interface ICameraInfoState {}
 class CameraInfo extends React.Component<ICameraInfoProps, ICameraInfoState> {
   render() {
+    const { camera } = this.props;
     return (
       <>
-        <Card
-          title={this.props.camera.nickname}
-          bordered={true}
-          style={{ width: 500 }}
-        >
-          <div style={{ float: "left", display: "inline" }}>
-            <VideoStream ip={this.props.camera.ip} />
+        <div style={{ width: 700, display: "table" }}>
+          <div style={{ display: "table-cell" }}>
+            <VideoStream ip={camera.ip} />
           </div>
-          <div style={{ float: "left", display: "inline" }}>
-            <IdentificationList type="known" title="Recognized" />
+          <div style={{ display: "table-cell" }}>
+            <IdentificationList
+              type="known"
+              title="Recognized"
+              cameraID={camera._id}
+            />
           </div>
-          <div style={{ float: "left", display: "inline" }}>
-            <IdentificationList type="unknown" title="Unknown" />
+          <div style={{ display: "table-cell" }}>
+            <IdentificationList
+              type="unknown"
+              title="Unknown"
+              cameraID={camera._id}
+            />
           </div>
-        </Card>
+        </div>
       </>
     );
   }

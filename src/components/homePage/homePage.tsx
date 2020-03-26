@@ -1,7 +1,7 @@
 import React from "react";
-import CameraInfo from "../../custom-components/cameraInfo/cameraInfo";
 import { Camera } from "../../api/api-types";
 import { CameraHandler } from "../../api/camera-handler";
+import CameraButton from "../../custom-components/cameraButton/cameraButton";
 
 interface IHomePageProps {
   handler: CameraHandler;
@@ -23,7 +23,17 @@ class HomePage extends React.Component<IHomePageProps, IHomePageState> {
   };
   render() {
     const { cameras } = this.state;
-    return cameras.map(camera => <CameraInfo camera={camera} />);
+    return (
+      <>
+        <div style={{ width: "100%", display: "table" }}>
+          {cameras.map(camera => (
+            <div style={{ display: "table-cell" }}>
+              <CameraButton camera={camera} />
+            </div>
+          ))}
+        </div>
+      </>
+    );
   }
 }
 
