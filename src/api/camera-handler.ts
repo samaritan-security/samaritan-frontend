@@ -7,7 +7,7 @@ export class CameraHandler {
     let data = await APIHandler(`camera`, "GET");
     if (!!data) {
       let dataArray = JSON.parse(JSON.stringify(data));
-      dataArray.array.forEach((element: any) => {
+      dataArray.forEach((element: any) => {
         cameras.push(new Camera(element));
       });
     }

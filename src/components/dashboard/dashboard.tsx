@@ -6,6 +6,8 @@ import IdentificationList from "../identificationList/identificationList";
 import VideoStream from "../videoStream/videoStream";
 import AlertPage from "../alertPage/alertPage";
 import HomePage from "../homePage/homePage";
+import { Camera } from "../../api/api-types";
+import { CameraHandler } from "../../api/camera-handler";
 
 const { Content, Sider, Header } = Layout;
 
@@ -70,7 +72,11 @@ class Dashboard extends React.Component {
                     />
                   )}
                 />
-                <Route exact path="/" component={HomePage} />
+                <Route
+                  exact
+                  path="/"
+                  render={props => <HomePage handler={new CameraHandler()} />}
+                />
               </Content>
             </Layout>
           </Layout>
