@@ -1,14 +1,11 @@
 import React from "react";
 import { Layout, Menu, Icon, Avatar, Typography } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-import IdentificationList from "../identificationList/identificationList";
-import VideoStream from "../videoStream/videoStream";
 import AlertPage from "../alertPage/alertPage";
 import HomePage from "../homePage/homePage";
-import { Camera } from "../../api/api-types";
 import { CameraHandler } from "../../api/camera-handler";
 import logo from "./logo.png";
+import Settings from "../settings/settings";
 
 const { Content, Sider, Header } = Layout;
 
@@ -52,7 +49,7 @@ class Dashboard extends React.Component {
                 <Menu.Item key="9">
                   <Icon type="setting" />
                   <span>Settings</span>
-                  <Link to="/" />
+                  <Link to="/settings" />
                 </Menu.Item>
               </Menu>
             </Sider>
@@ -96,6 +93,7 @@ class Dashboard extends React.Component {
                   path="/"
                   render={props => <HomePage handler={new CameraHandler()} />}
                 />
+                <Route exact path="/settings" render={props => <Settings />} />
               </Content>
             </Layout>
           </Layout>

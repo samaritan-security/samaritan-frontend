@@ -3,8 +3,7 @@ import { local_url } from "./urls";
 export async function APIHandler(
   extension: string,
   method: string,
-  body?: object,
-  info?: string
+  body?: object
 ) {
   let response = "";
   let data = "";
@@ -13,8 +12,8 @@ export async function APIHandler(
   }
   if (method === "POST" || method === "PUT") {
     await fetch(`${local_url}/${extension}`, {
-      method: method,
-      body: data,
+      method: "POST",
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json"
       }

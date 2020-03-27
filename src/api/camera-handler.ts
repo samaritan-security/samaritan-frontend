@@ -24,4 +24,10 @@ export class CameraHandler {
     }
     return cameras[0];
   }
+
+  async addNewCamera(nickname: string, ip: string) {
+    let data = { nickname: nickname, ip: ip };
+    let response = await APIHandler("camera", "POST", data);
+    return response;
+  }
 }
