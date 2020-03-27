@@ -3,4 +3,4 @@ import orgLogin from "./orgLogin";
 
 export default { title: "orgLogin" };
 
-export const orgLogin = () => <orgLogin />;
+export const orglogin = () => <orgLogin />;

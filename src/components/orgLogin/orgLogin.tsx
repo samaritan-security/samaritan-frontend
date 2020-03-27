@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from 'antd';
-import { Input, Button, Checkbox } from 'antd';
+import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 import './orgLogin.css'
 
