@@ -1,9 +1,10 @@
 import React from "react";
 import { Typography, Table, Modal, Avatar, Spin } from "antd";
-import { Alert, Person } from "../../api/api-types";
+import { Alert, Person, Camera } from "../../api/api-types";
 import { AlertHandler, MockAlertHandler } from "../../api/alert-handler";
 import ActionRequest from "../../custom-components/actionRequest/actionRequest";
 import { PersonHandler, MockPersonHandler } from "../../api/person-handler";
+import { CameraHandler } from "../../api/camera-handler";
 
 const { Title } = Typography;
 
@@ -14,6 +15,7 @@ interface IAlertPageState {
   alerts: Alert[];
   visible: boolean;
   person: Person | undefined;
+  camera: Camera | undefined;
 }
 
 class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
@@ -21,6 +23,7 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
     alerts: [],
     visible: false,
     person: undefined,
+    camera: undefined,
     loading: true
   };
 
@@ -41,6 +44,11 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
     new PersonHandler().getById(record.ref_id).then((person: Person) => {
       this.setState({
         person: person
+      });
+    });
+    new CameraHandler().getCameraById(record.camera).then((camera: Camera) => {
+      this.setState({
+        camera: camera
       });
     });
     this.setState({
@@ -64,7 +72,12 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
         "data:image/jpeg;charset=utf-8;base64, " + this.state.person!["img"];
     }
     let dataSource = alerts.map((element: Alert) => {
-      return { key: element._id, ref_id: element.ref_id, time: element.time };
+      return {
+        key: element._id,
+        ref_id: element.ref_id,
+        time: element.time,
+        camera: element.camera
+      };
     });
 
     const columns = [
@@ -77,6 +90,11 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
         title: "Time",
         dataIndex: "time",
         key: "time"
+      },
+      {
+        title: "Camera",
+        dataIndex: "camera",
+        key: "camera"
       }
     ];
 
@@ -100,7 +118,8 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
           onOk={this.closeDetailsModal}
           onCancel={this.closeDetailsModal}
         >
-          {this.state.person !== undefined ? (
+          {this.state.person !== undefined &&
+          this.state.camera !== undefined ? (
             <div style={{ display: "block" }}>
               <Avatar
                 icon="user"
@@ -110,6 +129,9 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
               />
               <p style={{ display: "inline-block" }}>
                 {this.state.person!["name"]}
+              </p>
+              <p style={{ display: "inline-block" }}>
+                {this.state.camera!["nickname"]}
               </p>
               <div
                 style={{ display: "inline-block", float: "right", margin: 10 }}

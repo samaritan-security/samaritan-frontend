@@ -10,6 +10,8 @@ const { Title } = Typography;
 interface IIdentificationListProps {
   type: string;
   title?: string;
+  cameraID: string;
+  startTime: string;
 }
 
 interface IIdentificationListState {
@@ -23,21 +25,24 @@ class IdentificationList extends React.Component<
 > {
   state = {
     people: [],
-    startTime: new Date().toUTCString()
+    startTime: this.props.startTime
   };
 
   componentDidMount = () => {
+    const { cameraID } = this.props;
     this.setState({
-      startTime: new Date().toUTCString()
+      startTime: this.props.startTime
     });
     setInterval(() => {
       const { startTime } = this.state;
       let endTime = new Date().toUTCString();
-      new SeenHandler().getAllPeople(startTime, endTime).then(data => {
-        this.setState({
-          people: data
+      new SeenHandler()
+        .getAllPeople(cameraID, startTime, endTime)
+        .then(data => {
+          this.setState({
+            people: data
+          });
         });
-      });
     }, 3000);
     return () => clearInterval();
   };

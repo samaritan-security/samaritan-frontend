@@ -6,6 +6,9 @@ import IdentificationList from "../identificationList/identificationList";
 import VideoStream from "../videoStream/videoStream";
 import AlertPage from "../alertPage/alertPage";
 import HomePage from "../homePage/homePage";
+import { Camera } from "../../api/api-types";
+import { CameraHandler } from "../../api/camera-handler";
+import logo from "./logo.png";
 
 const { Content, Sider, Header } = Layout;
 
@@ -55,11 +58,29 @@ class Dashboard extends React.Component {
             </Sider>
             <Layout>
               <Header style={{ background: "#fff", padding: 0 }}>
-                <div style={{ float: "right", marginRight: 20 }}>
+                <div>
+                  <img
+                    src={logo}
+                    height="60"
+                    width="283"
+                    style={{
+                      float: "left",
+                      marginLeft: "41%",
+                      marginBottom: "10"
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    float: "right",
+                    marginRight: "10px",
+                    display: "inline"
+                  }}
+                >
                   <Avatar icon="user" />
                 </div>
               </Header>
-              <Content style={{ margin: "0 16px", display: "" }}>
+              <Content style={{ margin: "16px 16px 16px 16px", display: "" }}>
                 <Route
                   exact
                   path="/alerts"
@@ -70,7 +91,11 @@ class Dashboard extends React.Component {
                     />
                   )}
                 />
-                <Route exact path="/" component={HomePage} />
+                <Route
+                  exact
+                  path="/"
+                  render={props => <HomePage handler={new CameraHandler()} />}
+                />
               </Content>
             </Layout>
           </Layout>

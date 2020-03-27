@@ -1,19 +1,39 @@
 import React from "react";
-import VideoStream from "../videoStream/videoStream";
-import IdentificationList from "../identificationList/identificationList";
+import { Camera } from "../../api/api-types";
+import { CameraHandler } from "../../api/camera-handler";
+import CameraButton from "../../custom-components/cameraButton/cameraButton";
 
-class HomePage extends React.Component {
+interface IHomePageProps {
+  handler: CameraHandler;
+}
+interface IHomePageState {
+  cameras: Camera[];
+}
+class HomePage extends React.Component<IHomePageProps, IHomePageState> {
+  state = {
+    cameras: []
+  };
+  componentDidMount = () => {
+    const { handler } = this.props;
+    handler.getCameras().then(data => {
+      this.setState({
+        cameras: data
+      });
+    });
+  };
   render() {
+    const { cameras } = this.state;
     return (
       <>
-        <div style={{ float: "left", display: "inline" }}>
-          <VideoStream ip="192.168.1.122" />
-        </div>
-        <div style={{ float: "left", display: "inline" }}>
-          <IdentificationList type="known" title="Recognized" />
-        </div>
-        <div style={{ float: "left", display: "inline" }}>
-          <IdentificationList type="unknown" title="Unknown" />
+        <div style={{ width: "100%", display: "table" }}>
+          {cameras.map(camera => (
+            <div style={{ display: "table-cell" }}>
+              <CameraButton
+                startTime={"Thu, 26 Mar 2020 20:09:10 GMT"}
+                camera={camera}
+              />
+            </div>
+          ))}
         </div>
       </>
     );
