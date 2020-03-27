@@ -28,7 +28,10 @@ class HomePage extends React.Component<IHomePageProps, IHomePageState> {
         <div style={{ width: "100%", display: "table" }}>
           {cameras.map(camera => (
             <div style={{ display: "table-cell" }}>
-              <CameraButton camera={camera} />
+              <CameraButton
+                startTime={"Thu, 26 Mar 2020 20:09:10 GMT"}
+                camera={camera}
+              />
             </div>
           ))}
         </div>

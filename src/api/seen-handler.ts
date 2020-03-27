@@ -31,7 +31,7 @@ export class SeenHandler {
       seen.forEach(async element => {
         let data = await APIHandler(`people/${element._id}`, "GET");
         if (!!data) {
-          people.push(new Person(data));
+          people.push(new Person(data[0]));
         }
       });
     });

@@ -5,6 +5,7 @@ import CameraInfo from "../cameraInfo/cameraInfo";
 
 interface ICameraButtonProps {
   camera: Camera;
+  startTime: string;
 }
 interface ICameraButtonState {
   modal: boolean;
@@ -47,9 +48,10 @@ class CameraButton extends React.Component<
           footer={null}
           title={camera.nickname}
           onCancel={this.toggleExtra}
-          width={700}
+          width={1000}
+          bodyStyle={{ height: 600 }}
         >
-          <CameraInfo camera={camera} />
+          <CameraInfo camera={camera} startTime={this.props.startTime} />
         </Modal>
       </>
     );

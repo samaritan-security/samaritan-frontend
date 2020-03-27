@@ -13,4 +13,15 @@ export class CameraHandler {
     }
     return cameras;
   }
+  async getCameraById(id: string): Promise<Camera> {
+    let cameras: Camera[] = [];
+    let data = await APIHandler(`camera/${id}`, "GET");
+    if (!!data) {
+      let dataArray = JSON.parse(JSON.stringify(data));
+      for (let i = 0; i < dataArray.length; i++) {
+        cameras.push(new Camera(dataArray[i]));
+      }
+    }
+    return cameras[0];
+  }
 }

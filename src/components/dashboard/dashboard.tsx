@@ -65,7 +65,7 @@ class Dashboard extends React.Component {
                     width="283"
                     style={{
                       float: "left",
-                      marginLeft: "40%",
+                      marginLeft: "41%",
                       marginBottom: "10"
                     }}
                   />

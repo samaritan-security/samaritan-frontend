@@ -11,6 +11,7 @@ interface IIdentificationListProps {
   type: string;
   title?: string;
   cameraID: string;
+  startTime: string;
 }
 
 interface IIdentificationListState {
@@ -24,13 +25,13 @@ class IdentificationList extends React.Component<
 > {
   state = {
     people: [],
-    startTime: new Date().toUTCString()
+    startTime: this.props.startTime
   };
 
   componentDidMount = () => {
     const { cameraID } = this.props;
     this.setState({
-      startTime: new Date().toUTCString()
+      startTime: this.props.startTime
     });
     setInterval(() => {
       const { startTime } = this.state;
