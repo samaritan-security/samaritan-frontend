@@ -1,6 +1,6 @@
 import React from "react";
-import orgLogin from "./orgLogin";
+import OrgLogin from "./orgLogin";
 
 export default { title: "orgLogin" };
 
-export const orglogin = () => <orgLogin />;
+export const orglogin = () => <OrgLogin />;
