@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from "react";
 import IdentificationList from "./identificationList";
 import "antd/dist/antd.css";
@@ -24,5 +25,4 @@ export const newList = () => {
   <NewIdentificationList
     startTime={new Date().toUTCString()}
     camera={camera}
-  />;
-};
+  />;};
