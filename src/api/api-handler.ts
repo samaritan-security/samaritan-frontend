@@ -16,13 +16,13 @@ export async function APIHandler(
       method: method,
       body: data,
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(data => {
+      .then((data) => {
         return data.json();
       })
-      .then(json => {
+      .then((json) => {
         response = json;
       })
       .catch(console.log);
@@ -30,16 +30,39 @@ export async function APIHandler(
     return response;
   } else {
     await fetch(`${local_url}/${extension}`, {
-      method: method
+      method: method,
     })
-      .then(data => {
+      .then((data) => {
         return data.json();
       })
-      .then(json => {
+      .then((json) => {
         response = json;
       })
       .catch(console.log);
 
     return response;
   }
+}
+
+export async function DNSHandler(name: string) {
+  let response = "";
+
+  const dnsRequest = new Request(`http://34.238.42.110:5000/${name}`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  await fetch(dnsRequest)
+    .then((data) => {
+      return data.json();
+    })
+    .then((json) => {
+      console.log(json);
+      response = json;
+    })
+    .catch(console.log);
+
+  return response;
 }
