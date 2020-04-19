@@ -2,26 +2,28 @@ import React from "react";
 import { Layout, Menu, Icon, Avatar, Typography } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import IdentificationList from "../identificationList/identificationList";
-import VideoStream from "../videoStream/videoStream";
 import AlertPage from "../alertPage/alertPage";
 import HomePage from "../homePage/homePage";
-import { Camera } from "../../api/api-types";
 import { CameraHandler } from "../../api/camera-handler";
 import logo from "./logo.png";
 
 const { Content, Sider, Header } = Layout;
 
-class Dashboard extends React.Component {
+interface IDashboardProps {
+  ip: string;
+}
+interface IDashboardState {}
+class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
   state = {
-    collapsed: false
+    collapsed: false,
   };
   onCollapse = () => {
     this.setState({
-      collapsed: !this.state.collapsed
+      collapsed: !this.state.collapsed,
     });
   };
   render() {
+    const { ip } = this.props;
     return (
       <>
         <Router>
@@ -66,7 +68,7 @@ class Dashboard extends React.Component {
                     style={{
                       float: "left",
                       marginLeft: "41%",
-                      marginBottom: "10"
+                      marginBottom: "10",
                     }}
                   />
                 </div>
@@ -74,7 +76,7 @@ class Dashboard extends React.Component {
                   style={{
                     float: "right",
                     marginRight: "10px",
-                    display: "inline"
+                    display: "inline",
                   }}
                 >
                   <Avatar icon="user" />
@@ -84,17 +86,20 @@ class Dashboard extends React.Component {
                 <Route
                   exact
                   path="/alerts"
-                  render={props => (
+                  render={(props) => (
                     <AlertPage
                       {...props}
                       startTime={"Wed, 26 Feb 2020 18:23:27 GMT"}
+                      ip={ip}
                     />
                   )}
                 />
                 <Route
                   exact
                   path="/"
-                  render={props => <HomePage handler={new CameraHandler()} />}
+                  render={(props) => (
+                    <HomePage ip={ip} handler={new CameraHandler(ip)} />
+                  )}
                 />
               </Content>
             </Layout>

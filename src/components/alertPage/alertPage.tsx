@@ -10,6 +10,7 @@ const { Title } = Typography;
 
 interface IAlertPageProps {
   startTime: string;
+  ip: string;
 }
 interface IAlertPageState {
   alerts: Alert[];
@@ -24,16 +25,16 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
     visible: false,
     person: undefined,
     camera: undefined,
-    loading: true
+    loading: true,
   };
 
   componentDidMount = () => {
     setInterval(() => {
-      const { startTime } = this.props;
+      const { startTime, ip } = this.props;
       let endTime = new Date().toUTCString();
-      new AlertHandler().getAlerts(startTime, endTime).then(data => {
+      new AlertHandler(ip).getAlerts(startTime, endTime).then((data) => {
         this.setState({
-          alerts: data
+          alerts: data,
         });
       });
     }, 3000);
@@ -41,24 +42,27 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
   };
 
   openDetailsModal = (record: any) => {
-    new PersonHandler().getById(record.ref_id).then((person: Person) => {
+    const { ip } = this.props;
+    new PersonHandler(ip).getById(record.ref_id).then((person: Person) => {
       this.setState({
-        person: person
+        person: person,
       });
     });
-    new CameraHandler().getCameraById(record.camera).then((camera: Camera) => {
-      this.setState({
-        camera: camera
+    new CameraHandler(ip)
+      .getCameraById(record.camera)
+      .then((camera: Camera) => {
+        this.setState({
+          camera: camera,
+        });
       });
-    });
     this.setState({
-      visible: true
+      visible: true,
     });
   };
 
   closeDetailsModal = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 
@@ -76,7 +80,7 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
         key: element._id,
         ref_id: element.ref_id,
         time: element.time,
-        camera: element.camera
+        camera: element.camera,
       };
     });
 
@@ -84,18 +88,18 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
       {
         title: "Alert",
         dataIndex: "ref_id",
-        key: "ref_id"
+        key: "ref_id",
       },
       {
         title: "Time",
         dataIndex: "time",
-        key: "time"
+        key: "time",
       },
       {
         title: "Camera",
         dataIndex: "camera",
-        key: "camera"
-      }
+        key: "camera",
+      },
     ];
 
     return (
@@ -106,9 +110,9 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
           columns={columns}
           onRow={(record, rowIndex) => {
             return {
-              onClick: event => {
+              onClick: (event) => {
                 this.openDetailsModal(record);
-              }
+              },
             };
           }}
         />

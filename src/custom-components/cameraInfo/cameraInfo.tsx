@@ -7,11 +7,12 @@ import NewIdentificationList from "../../components/identificationList/newIdenti
 interface ICameraInfoProps {
   camera: Camera; //id, ip, nickname
   startTime: string;
+  ip: string;
 }
 interface ICameraInfoState {}
 class CameraInfo extends React.Component<ICameraInfoProps, ICameraInfoState> {
   render() {
-    const { camera, startTime } = this.props;
+    const { ip, camera, startTime } = this.props;
     return (
       <>
         <div style={{ width: 1000, display: "block" }}>
@@ -19,7 +20,7 @@ class CameraInfo extends React.Component<ICameraInfoProps, ICameraInfoState> {
             style={{
               display: "inline-block",
               width: 450,
-              marginRight: 5
+              marginRight: 5,
             }}
           >
             <VideoStream ip={camera.ip} />
@@ -30,10 +31,14 @@ class CameraInfo extends React.Component<ICameraInfoProps, ICameraInfoState> {
               width: 400,
               marginLeft: 5,
               marginRight: 20,
-              float: "right"
+              float: "right",
             }}
           >
-            <NewIdentificationList camera={camera} startTime={startTime} />
+            <NewIdentificationList
+              ip={ip}
+              camera={camera}
+              startTime={startTime}
+            />
           </div>
         </div>
       </>

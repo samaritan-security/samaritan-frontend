@@ -6,6 +6,7 @@ import CameraInfo from "../cameraInfo/cameraInfo";
 interface ICameraButtonProps {
   camera: Camera;
   startTime: string;
+  ip: string;
 }
 interface ICameraButtonState {
   modal: boolean;
@@ -16,16 +17,16 @@ class CameraButton extends React.Component<
   ICameraButtonState
 > {
   state = {
-    modal: false
+    modal: false,
   };
   toggleExtra = () => {
     const { modal } = this.state;
     this.setState({
-      modal: !modal
+      modal: !modal,
     });
   };
   render() {
-    const { camera } = this.props;
+    const { camera, ip } = this.props;
     let source = "http://" + camera.ip + "/video.mjpg";
     return (
       <>
@@ -51,7 +52,11 @@ class CameraButton extends React.Component<
           width={1000}
           bodyStyle={{ height: 600 }}
         >
-          <CameraInfo camera={camera} startTime={this.props.startTime} />
+          <CameraInfo
+            ip={ip}
+            camera={camera}
+            startTime={this.props.startTime}
+          />
         </Modal>
       </>
     );

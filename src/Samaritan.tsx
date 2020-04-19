@@ -38,7 +38,7 @@ class Samaritan extends React.Component<ISamaritanProps, ISamaritanState> {
     } else if (loggedIn == false) {
       return <Login ip={orgIP} loginResponse={this.setLoggedIn} />;
     } else {
-      return <Dashboard />;
+      return <Dashboard ip={orgIP} />;
     }
   }
 }
