@@ -78,7 +78,7 @@ export async function APIHandler2(url: string, body: object) {
     },
   })
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         return true;
       } else {
         return false;

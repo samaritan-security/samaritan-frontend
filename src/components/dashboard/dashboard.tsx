@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Icon, Avatar, Typography } from "antd";
+import { Layout, Menu, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import AlertPage from "../alertPage/alertPage";
@@ -63,6 +63,7 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
                 <div>
                   <img
                     src={logo}
+                    alt="unavailable"
                     height="60"
                     width="283"
                     style={{
