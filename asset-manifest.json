@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/samaritan-frontend/static/css/main.8bef6460.chunk.css",
+    "main.js": "/samaritan-frontend/static/js/main.73da2da7.chunk.js",
+    "main.js.map": "/samaritan-frontend/static/js/main.73da2da7.chunk.js.map",
+    "runtime-main.js": "/samaritan-frontend/static/js/runtime-main.322da46e.js",
+    "runtime-main.js.map": "/samaritan-frontend/static/js/runtime-main.322da46e.js.map",
+    "static/css/2.29c1ed91.chunk.css": "/samaritan-frontend/static/css/2.29c1ed91.chunk.css",
+    "static/js/2.1e1852fb.chunk.js": "/samaritan-frontend/static/js/2.1e1852fb.chunk.js",
+    "static/js/2.1e1852fb.chunk.js.map": "/samaritan-frontend/static/js/2.1e1852fb.chunk.js.map",
+    "index.html": "/samaritan-frontend/index.html",
+    "precache-manifest.f1a1a275775544d2d8852e544566345a.js": "/samaritan-frontend/precache-manifest.f1a1a275775544d2d8852e544566345a.js",
+    "service-worker.js": "/samaritan-frontend/service-worker.js",
+    "static/css/2.29c1ed91.chunk.css.map": "/samaritan-frontend/static/css/2.29c1ed91.chunk.css.map",
+    "static/css/main.8bef6460.chunk.css.map": "/samaritan-frontend/static/css/main.8bef6460.chunk.css.map",
+    "static/js/2.1e1852fb.chunk.js.LICENSE": "/samaritan-frontend/static/js/2.1e1852fb.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.322da46e.js",
+    "static/css/2.29c1ed91.chunk.css",
+    "static/js/2.1e1852fb.chunk.js",
+    "static/css/main.8bef6460.chunk.css",
+    "static/js/main.73da2da7.chunk.js"
+  ]
+}
