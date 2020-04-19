@@ -1,5 +1,3 @@
-import { local_url } from "./urls";
-
 export async function APIHandler(
   extension: string,
   method: string,
@@ -12,7 +10,7 @@ export async function APIHandler(
     data = JSON.stringify(body);
   }
   if (method === "POST" || method === "PUT") {
-    await fetch(`${local_url}/${extension}`, {
+    await fetch(`${extension}`, {
       method: method,
       body: data,
       headers: {
@@ -29,7 +27,7 @@ export async function APIHandler(
 
     return response;
   } else {
-    await fetch(`${local_url}/${extension}`, {
+    await fetch(`${extension}`, {
       method: method,
     })
       .then((data) => {
@@ -59,8 +57,35 @@ export async function DNSHandler(name: string) {
       return data.json();
     })
     .then((json) => {
-      console.log(json);
       response = json;
+    })
+    .catch(console.log);
+
+  return response;
+}
+
+export async function APIHandler2(url: string, body: object) {
+  let response = false;
+  let data = "";
+  if (!!body) {
+    data = JSON.stringify(body);
+  }
+  await fetch(`${url}`, {
+    method: "POST",
+    body: data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .then((value) => {
+      response = value;
     })
     .catch(console.log);
 

@@ -32,7 +32,6 @@ class OrgLogin extends React.Component<IOrgLoginProps, IOrgLoginState> {
     this.setState({
       organizationName: e.target.value,
     });
-    console.log(this.state.organizationName);
   };
   render() {
     return (

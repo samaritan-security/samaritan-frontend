@@ -36,7 +36,7 @@ class Samaritan extends React.Component<ISamaritanProps, ISamaritanState> {
     if (orgIP == "") {
       return <OrgLogin dnsResponse={this.setOrgIP} />;
     } else if (loggedIn == false) {
-      return <Login />;
+      return <Login ip={orgIP} loginResponse={this.setLoggedIn} />;
     } else {
       return <Dashboard />;
     }
