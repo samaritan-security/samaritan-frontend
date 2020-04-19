@@ -1,10 +1,4 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
 import OrgLogin from "./components/orgLogin/orgLogin";
 import Login from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
@@ -33,9 +27,9 @@ class Samaritan extends React.Component<ISamaritanProps, ISamaritanState> {
   };
   render() {
     const { orgIP, loggedIn } = this.state;
-    if (orgIP == "") {
+    if (orgIP === "") {
       return <OrgLogin dnsResponse={this.setOrgIP} />;
-    } else if (loggedIn == false) {
+    } else if (loggedIn === false) {
       return <Login ip={orgIP} loginResponse={this.setLoggedIn} />;
     } else {
       return <Dashboard ip={orgIP} />;

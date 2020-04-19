@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Popover, Modal, Input } from "antd";
 import { Person } from "../../api/api-types";
-import { PersonHandler } from "../../api/person-handler";
 
 const { confirm } = Modal;
 

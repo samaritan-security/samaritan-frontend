@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography, Table, Modal, Avatar, Spin } from "antd";
 import { Alert, Person, Camera } from "../../api/api-types";
-import { AlertHandler, MockAlertHandler } from "../../api/alert-handler";
+import { AlertHandler } from "../../api/alert-handler";
 import ActionRequest from "../../custom-components/actionRequest/actionRequest";
-import { PersonHandler, MockPersonHandler } from "../../api/person-handler";
+import { PersonHandler } from "../../api/person-handler";
 import { CameraHandler } from "../../api/camera-handler";
 
 const { Title } = Typography;
@@ -140,7 +140,10 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
               <div
                 style={{ display: "inline-block", float: "right", margin: 10 }}
               >
-                <ActionRequest id={this.state.person!["_id"]} />
+                <ActionRequest
+                  ip={this.props.ip}
+                  id={this.state.person!["_id"]}
+                />
               </div>
             </div>
           ) : (

@@ -1,6 +1,5 @@
 import React from "react";
 import VideoStream from "../../components/videoStream/videoStream";
-import IdentificationList from "../../components/identificationList/identificationList";
 import { Camera } from "../../api/api-types";
 import NewIdentificationList from "../../components/identificationList/newIdentificationList";
 

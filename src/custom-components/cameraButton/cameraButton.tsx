@@ -42,7 +42,7 @@ class CameraButton extends React.Component<
             />
           }
         >
-          <img src={source} width="270" height="200" />
+          <img src={source} alt="unavailable" width="270" height="200" />
         </Card>
         <Modal
           visible={this.state.modal}
