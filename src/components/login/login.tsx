@@ -54,10 +54,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
             placeholder="Password"
             style={{ marginBottom: 10 }}
           />
-          <Checkbox style={{ marginBottom: 10 }}>Remember me</Checkbox>
-          <a className="login-form-forgot" style={{ marginBottom: 10 }}>
-            Forgot password
-          </a>
+
           <Button type="primary" onClick={this.login} block>
             Login
           </Button>
