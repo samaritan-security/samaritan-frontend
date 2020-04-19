@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c0f0ec12c71b277f9738f17c5565977d",
+    "revision": "d203012d8e210cdef5c239a3015e5f19",
     "url": "/samaritan-frontend/index.html"
   },
   {

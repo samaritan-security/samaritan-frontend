@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/samaritan-frontend/precache-manifest.2143d4a29b4f6c228016becf33dcee4f.js"
+  "/samaritan-frontend/precache-manifest.b4253a4cd03866c35bb40a85ee44109f.js"
 );
 
 self.addEventListener('message', (event) => {
