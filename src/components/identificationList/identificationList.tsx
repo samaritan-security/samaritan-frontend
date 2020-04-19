@@ -25,27 +25,27 @@ class IdentificationList extends React.Component<
 > {
   state = {
     people: [],
-    startTime: this.props.startTime
+    startTime: this.props.startTime,
   };
 
-  componentDidMount = () => {
-    const { cameraID } = this.props;
-    this.setState({
-      startTime: this.props.startTime
-    });
-    setInterval(() => {
-      const { startTime } = this.state;
-      let endTime = new Date().toUTCString();
-      new SeenHandler()
-        .getAllPeople(cameraID, startTime, endTime)
-        .then(data => {
-          this.setState({
-            people: data
-          });
-        });
-    }, 3000);
-    return () => clearInterval();
-  };
+  // componentDidMount = () => {
+  //   const { cameraID } = this.props;
+  //   this.setState({
+  //     startTime: this.props.startTime
+  //   });
+  //   setInterval(() => {
+  //     const { startTime } = this.state;
+  //     let endTime = new Date().toUTCString();
+  //     new SeenHandler()
+  //       .getAllPeople(cameraID, startTime, endTime)
+  //       .then(data => {
+  //         this.setState({
+  //           people: data
+  //         });
+  //       });
+  //   }, 3000);
+  //   return () => clearInterval();
+  // };
 
   getKnownRow = (known: Person) => {
     let img = "data:image/jpeg;charset=utf-8;base64, " + known.img;
@@ -80,7 +80,7 @@ class IdentificationList extends React.Component<
   getKnownList = (data: Person[]) => {
     return (
       <>
-        {data.map(known => {
+        {data.map((known) => {
           if (known.known) {
             return this.getKnownRow(known);
           }
@@ -92,7 +92,7 @@ class IdentificationList extends React.Component<
   getUnknownList = (data: Person[]) => {
     return (
       <>
-        {data.map(unknown => {
+        {data.map((unknown) => {
           if (!unknown.known) {
             return this.getUnknownRow(unknown);
           }

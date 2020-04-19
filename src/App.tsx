@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import "antd/dist/antd.css";
-import Dashboard from "./components/dashboard/dashboard";
+import Samaritan from "./Samaritan";
 
 const App: React.FC = () => {
   return (
     <>
-      <Dashboard />
+      <Samaritan />
     </>
   );
 };

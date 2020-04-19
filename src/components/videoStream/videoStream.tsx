@@ -13,14 +13,14 @@ class VideoStream extends React.Component<
   IVideoStreamState
 > {
   state = {
-    source: ""
+    source: "",
   };
 
   componentDidMount = () => {
     const { ip } = this.props;
     let source = "http://" + ip + "/video.mjpg";
     this.setState({
-      source: source
+      source: source,
     });
   };
 
@@ -28,7 +28,7 @@ class VideoStream extends React.Component<
     const { source } = this.state;
     return (
       <>
-        <img src={source} />
+        <img src={source} alt="unavailable" />
       </>
     );
   }

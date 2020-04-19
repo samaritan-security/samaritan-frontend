@@ -2,6 +2,10 @@ import { APIHandler } from "./api-handler";
 import { Seen, Person } from "./api-types";
 
 export class SeenHandler {
+  ip: string;
+  constructor(ip: string) {
+    this.ip = ip;
+  }
   async getSeen(
     cameraID: string,
     startTime: string,
@@ -9,7 +13,7 @@ export class SeenHandler {
   ): Promise<Seen[]> {
     let seen: Seen[] = [];
     let data = await APIHandler(
-      `seen/${cameraID}/${startTime}/${endTime}`,
+      `http://${this.ip}:5000/seen/${cameraID}/${startTime}/${endTime}`,
       "GET"
     );
     if (!!data) {
@@ -28,8 +32,11 @@ export class SeenHandler {
   ): Promise<Person[]> {
     let people: Person[] = [];
     this.getSeen(cameraID, startTime, endTime).then((seen: Seen[]) => {
-      seen.forEach(async element => {
-        let data = await APIHandler(`people/${element._id}`, "GET");
+      seen.forEach(async (element) => {
+        let data = await APIHandler(
+          `http://${this.ip}:5000/people/${element._id}`,
+          "GET"
+        );
         if (!!data) {
           people.push(new Person(data[0]));
         }

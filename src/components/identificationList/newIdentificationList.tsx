@@ -8,6 +8,7 @@ import ActionRequest from "../../custom-components/actionRequest/actionRequest";
 interface INewIdentificationListProps {
   camera: Camera;
   startTime: string;
+  ip: string;
 }
 interface INewIdentificationListState {
   data: Person[];
@@ -17,13 +18,13 @@ class NewIdentificationList extends React.Component<
   INewIdentificationListState
 > {
   state = {
-    data: []
+    data: [],
   };
 
   componentWillMount = () => {
-    const { camera, startTime } = this.props;
+    const { ip, camera, startTime } = this.props;
     let endTime = new Date().toUTCString();
-    new SeenHandler()
+    new SeenHandler(ip)
       .getAllPeople(camera._id, startTime, endTime)
       .then((people: Person[]) => {
         this.handleData(people);
@@ -32,11 +33,12 @@ class NewIdentificationList extends React.Component<
 
   handleData(data: Person[]) {
     this.setState({
-      data: data
+      data: data,
     });
   }
 
   renderItem(index: number, key: string | number) {
+    const { ip } = this.props;
     let person: Person = this.state.data[index];
     let img = "data:image/jpeg;charset=utf-8;base64, " + person.img;
     return (
@@ -51,7 +53,7 @@ class NewIdentificationList extends React.Component<
             {person.known ? person.name : "Unknown"}
           </p>
           <div style={{ display: "inline-block", float: "right" }}>
-            <ActionRequest id={person._id} />
+            <ActionRequest ip={ip} id={person._id} />
           </div>
         </div>
       </>

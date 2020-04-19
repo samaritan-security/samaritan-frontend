@@ -2,6 +2,10 @@ import { Alert } from "./api-types";
 import { APIHandler } from "./api-handler";
 
 export class AlertHandler {
+  ip: string;
+  constructor(ip: string) {
+    this.ip = ip;
+  }
   /**
    * returns all alerts from startDate -> endDate
    *
@@ -10,7 +14,10 @@ export class AlertHandler {
    */
   async getAlerts(startDate: string, endDate: string): Promise<Alert[]> {
     let alerts: Alert[] = [];
-    let data = await APIHandler(`alerts/${startDate}/${endDate}`, "GET");
+    let data = await APIHandler(
+      `http://${this.ip}:5000/alerts/${startDate}/${endDate}`,
+      "GET"
+    );
     if (!!data) {
       let dataArray = JSON.parse(JSON.stringify(data));
       for (let i = 0; i < dataArray.length; i++) {

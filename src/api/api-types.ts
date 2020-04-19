@@ -78,3 +78,14 @@ export class Camera {
     this.nickname = data.nickname;
   }
 }
+
+export class dnsEntry {
+  _id: string;
+  ip: string;
+  name: string;
+  constructor(data: any) {
+    this._id = data._id;
+    this.ip = data.ip;
+    this.name = data.name;
+  }
+}
