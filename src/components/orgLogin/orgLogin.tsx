@@ -1,9 +1,10 @@
 import React from "react";
-import { Typography } from "antd";
+import { Typography, Card } from "antd";
 import { Input, Button } from "antd";
-import "antd/dist/antd.css";
-import "./orgLogin.css";
 import { LoginHandler } from "../../api/login-handler";
+import "./orgLogin.css";
+import logo from "../../logo.png";
+import title from "./title.png";
 
 const { Title } = Typography;
 
@@ -36,17 +37,32 @@ class OrgLogin extends React.Component<IOrgLoginProps, IOrgLoginState> {
   render() {
     return (
       <>
-        <Title className="title"> Organization Login </Title>
+        <div
+          style={{
+            backgroundColor: "#4477BE",
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <div className="logo" style={{ display: "block" }}>
+            <div style={{ display: "block" }}>
+              <img src={logo} alt="unavailable" />
+            </div>
+            <div style={{ display: "block", paddingLeft: 40 }}>
+              <img src={title} alt="unavailable" />
+            </div>
+          </div>
 
-        <div className="login">
-          <Input
-            placeholder="Organization Name"
-            onChange={this.setText}
-            style={{ marginBottom: 10 }}
-          />
-          <Button type="primary" onClick={this.sendDNSQuery} block>
-            Submit
-          </Button>
+          <div className="login" style={{ display: "block" }}>
+            <Input
+              placeholder="Organization Name"
+              onChange={this.setText}
+              style={{ marginBottom: 10 }}
+            />
+            <Button type="primary" onClick={this.sendDNSQuery} block>
+              Contine
+            </Button>
+          </div>
         </div>
       </>
     );

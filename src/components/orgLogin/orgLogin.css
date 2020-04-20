@@ -1,22 +1,22 @@
 .login {
-    width: 25%;
-    border-radius: 15px;
-    height: 15px;
-    position: absolute;
-    top: 50%;
-    left: 40%;
-  }
+  width: 20%;
+  border-radius: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
 
-  .title {
-    position: absolute;
-    left: 40%;
-    top: 10%;
-  }
+.logo {
+  position: absolute;
+  left: 40%;
+  top: 30%;
+}
 
-  .login-form {
-    max-width: 300px;
-  }
+.login-form {
+  max-width: 300px;
+}
 
-  .login-form-forgot {
-    float: right;
-  }
+.login-form-forgot {
+  float: right;
+}
