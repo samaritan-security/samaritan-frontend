@@ -6,8 +6,6 @@ import "./orgLogin.css";
 import logo from "../../logo.png";
 import title from "./title.png";
 
-const { Title } = Typography;
-
 interface IOrgLoginProps {
   dnsResponse: (ip: string) => void;
 }

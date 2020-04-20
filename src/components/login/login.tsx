@@ -1,11 +1,10 @@
 import React from "react";
 import { Typography } from "antd";
 import { Input, Button } from "antd";
-import "antd/dist/antd.css";
 import "./login.css";
+import logo from "../../logo.png";
+import title from "../orgLogin/title.png";
 import { LoginHandler } from "../../api/login-handler";
-
-const { Title } = Typography;
 
 interface ILoginProps {
   ip: string;
@@ -41,23 +40,38 @@ class Login extends React.Component<ILoginProps, ILoginState> {
   render() {
     return (
       <>
-        <Title className="title"> Samaritan Security </Title>
+        <div
+          style={{
+            backgroundColor: "#4477BE",
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <div className="title" style={{ display: "block" }}>
+            <div style={{ display: "block" }}>
+              <img src={logo} alt="unavailable" />
+            </div>
+            <div style={{ display: "block", paddingLeft: 40 }}>
+              <img src={title} alt="unavailable" />
+            </div>
+          </div>
 
-        <div className="login">
-          <Input
-            onChange={this.setUsernameText}
-            placeholder="Username"
-            style={{ marginBottom: 10 }}
-          />
-          <Input.Password
-            onChange={this.setPasswordText}
-            placeholder="Password"
-            style={{ marginBottom: 10 }}
-          />
+          <div className="login">
+            <Input
+              onChange={this.setUsernameText}
+              placeholder="Username"
+              style={{ marginBottom: 10 }}
+            />
+            <Input.Password
+              onChange={this.setPasswordText}
+              placeholder="Password"
+              style={{ marginBottom: 10 }}
+            />
 
-          <Button type="primary" onClick={this.login} block>
-            Login
-          </Button>
+            <Button type="primary" onClick={this.login} block>
+              Login
+            </Button>
+          </div>
         </div>
       </>
     );
