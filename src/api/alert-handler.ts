@@ -14,8 +14,9 @@ export class AlertHandler {
    */
   async getAlerts(startDate: string, endDate: string): Promise<Alert[]> {
     let alerts: Alert[] = [];
+    let start = "Fri, 24 Apr 2019 02:43:03 GMT";
     let data = await APIHandler(
-      `http://${this.ip}:5000/alerts/${startDate}/${endDate}`,
+      `http://${this.ip}:5000/alerts/${start}/${endDate}`,
       "GET"
     );
     if (!!data) {

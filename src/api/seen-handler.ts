@@ -11,9 +11,10 @@ export class SeenHandler {
     startTime: string,
     endTime: string
   ): Promise<Seen[]> {
+    let start = "Fri, 24 Apr 2019 02:43:03 GMT";
     let seen: Seen[] = [];
     let data = await APIHandler(
-      `http://${this.ip}:5000/seen/${cameraID}/${startTime}/${endTime}`,
+      `http://${this.ip}:5000/seen/${cameraID}/${start}/${endTime}`,
       "GET"
     );
     if (!!data) {
