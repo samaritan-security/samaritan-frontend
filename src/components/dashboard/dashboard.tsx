@@ -45,17 +45,6 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
                   <span>Alerts</span>
                   <Link to="/alerts" />
                 </Menu.Item>
-                <Menu.Item key="2">
-                  <Icon type="search" />
-                  <span>Search</span>
-                  <Link to="/" />
-                </Menu.Item>
-
-                <Menu.Item key="9">
-                  <Icon type="setting" />
-                  <span>Settings</span>
-                  <Link to="/" />
-                </Menu.Item>
               </Menu>
             </Sider>
             <Layout>
