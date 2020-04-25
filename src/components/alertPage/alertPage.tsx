@@ -134,6 +134,7 @@ class AlertPage extends React.Component<IAlertPageProps, IAlertPageState> {
               <p style={{ display: "inline-block" }}>
                 {this.state.person!["name"]}
               </p>
+              <p style={{ display: "inline-block" }}>" seen at "</p>
               <p style={{ display: "inline-block" }}>
                 {this.state.camera!["nickname"]}
               </p>

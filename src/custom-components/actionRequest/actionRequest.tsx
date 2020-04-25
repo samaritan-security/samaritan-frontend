@@ -49,7 +49,7 @@ class ActionRequest extends React.Component<
     confirm({
       title: `Do you want to authorize ?`,
       //icon: <ExclamationCircleOutlined />,
-      content: "TODO: put person info",
+      content: "",
       onOk() {
         console.log("OK");
       },
@@ -68,7 +68,7 @@ class ActionRequest extends React.Component<
     confirm({
       title: `Do you want to unauthorize ?`,
       //icon: <ExclamationCircleOutlined />,
-      content: "TODO: put person info",
+      content: "",
       onOk() {
         console.log("OK");
       },
